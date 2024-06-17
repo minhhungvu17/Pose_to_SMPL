@@ -2,9 +2,9 @@ name: smplpytorch
 
 dependencies:
   - opencv
-  - python=3.7
+  - python=3.8.19
   - matplotlib
-  - numpy
+  - numpy==1.23.1
   - pytorch
   - pip
   - pip:
