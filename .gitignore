@@ -16,3 +16,4 @@ output/
 make_gif.py
 dataset/
 fit/output/
+smplpytorch/native/models
