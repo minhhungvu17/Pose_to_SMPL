@@ -7,7 +7,7 @@ from display_utils import display_model
 
 
 if __name__ == '__main__':
-    cuda = True
+    cuda = False
     batch_size = 1
 
     # Create the SMPL layer
