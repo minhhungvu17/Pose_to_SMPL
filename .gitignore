@@ -14,3 +14,5 @@ smplpytorch/native/models/*.pkl
 exp/
 output/
 make_gif.py
+dataset/
+fit/output/
