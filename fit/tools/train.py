@@ -6,7 +6,7 @@ import os
 
 from tqdm import tqdm
 sys.path.append(os.getcwd())
-from save import save_single_pic
+from fit.tools.save import save_single_pic
 
 
 

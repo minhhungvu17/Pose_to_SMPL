@@ -1,7 +1,11 @@
 import matplotlib.pyplot as plt
 import imageio, os
+
 images = []
-filenames = sorted(fn for fn in os.listdir('D:/OneDrive - sjtu.edu.cn/MVIG/Action-Dataset/Pose_to_SMPL/fit/output/NTU/picture') )
+dataset = 'HAA4D'
+action = 'baseball_swing_000'
+filenames = sorted(fn for fn in os.listdir(f'fit/output/{dataset}/picture/{action}'))
+
 for filename in filenames:
-    images.append(imageio.imread('D:/OneDrive - sjtu.edu.cn/MVIG/Action-Dataset/Pose_to_SMPL/fit/output/NTU/picture/'+filename))
-imageio.mimsave('clapping_example.gif', images, duration=0.2)
+    images.append(imageio.imread(f'fit/output/{dataset}/picture/{action}/'+filename))
+imageio.mimsave(f'{dataset}_{action}.gif', images, duration=0.2)

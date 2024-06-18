@@ -17,6 +17,9 @@ import logging
 import argparse
 import json
 
+import matplotlib.pyplot as plt
+import imageio, os
+
 
 torch.backends.cudnn.enabled = True
 torch.backends.cudnn.benchmark = True
@@ -98,13 +101,15 @@ if __name__ == "__main__":
         center_idx=0,
         gender=cfg.MODEL.GENDER,
         model_root='smplpytorch/native/models')
-
+    
     meters = Meters()
     file_num = 0
     for root, dirs, files in os.walk(cfg.DATASET.PATH):
         for file in sorted(files):
-            if not 'baseball_swing' in file:
-                continue
+            # if not 'baseball_swing' in file:
+            #     continue
+            # if not file == 's010_driver02.npy':
+            #     continue
             file_num += 1
             logger.info(
                 'Processing file: {}    [{} / {}]'.format(file, file_num, len(files)))
@@ -118,9 +123,18 @@ if __name__ == "__main__":
             meters.reset_early_stop()
             logger.info("avg_loss:{:.4f}".format(meters.avg))
 
-            save_params(res, file, logger, args.dataset_name)
+            save_params(res, smpl_layer, file, logger, args.dataset_name)
             save_pic(res, smpl_layer, file, logger, args.dataset_name, target)
 
             torch.cuda.empty_cache()
-    logger.info(
-        "Fitting finished! Average loss:     {:.9f}".format(meters.avg))
+            images = []
+            filenames = sorted(fn for fn in os.listdir(f'fit/output/{args.dataset_name}/picture/{file[:-4]}'))
+            for filename in filenames:
+                images.append(imageio.imread(f'fit/output/{args.dataset_name}/picture/{file[:-4]}/'+filename))
+            imageio.mimsave(f'gif/{args.dataset_name}/{file[:-4]}.gif', images, duration=0.2)
+
+            logger.info("Gifing finished!")
+            
+        logger.info("Fitting finished! Average loss: {:.9f}".format(meters.avg))
+
+

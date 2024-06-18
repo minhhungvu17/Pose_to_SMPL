@@ -1,5 +1,5 @@
 from display_utils import display_model
-from label import get_label
+from fit.tools.label import get_label
 import sys
 import os
 import re
@@ -31,11 +31,11 @@ def save_pic(res, smpl_layer, file, logger, dataset_name, target):
             savepath=os.path.join(fit_path+"/frame_{:0>4d}".format(i)),
             batch_idx=i,
             show=False,
-            only_joint=True)
+            only_joint=False)
     logger.info('Pictures saved')
 
 
-def save_params(res, file, logger, dataset_name):
+def save_params(res, smpl_layer, file, logger, dataset_name):
     pose_params, shape_params, verts, Jtr = res
     file_name = re.split('[/.]', file)[-2]
     fit_path = "fit/output/{}/".format(dataset_name)
@@ -50,7 +50,9 @@ def save_params(res, file, logger, dataset_name):
     params["label"] = label
     params["pose_params"] = pose_params
     params["shape_params"] = shape_params
+    params["verts"] = verts
     params["Jtr"] = Jtr
+    params["smpl_layer"] = smpl_layer
     print("label:{}".format(label))
     with open(os.path.join((fit_path),
                            "{}_params.pkl".format(file_name)), 'wb') as f:

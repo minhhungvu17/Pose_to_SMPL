@@ -1,0 +1,81 @@
+{
+    "MODEL": {
+        "GENDER": "neutral"
+    },
+    "TRAIN": {
+        "LEARNING_RATE": 2e-2,
+        "MAX_EPOCH": 1000,
+        "WRITE": 1,
+        "OPTIMIZE_SCALE":1,
+        "OPTIMIZE_SHAPE":0
+    },
+    "USE_GPU": 0,
+    "DATASET": {
+        "NAME": "OMMC",
+        "PATH": "../OMMC/output",
+        "TARGET_PATH": "",
+        "DATA_MAP": [
+            [
+                0,
+                6
+            ],
+            [
+                2,
+                2
+            ],
+            [
+                5,
+                1
+            ],
+            [
+                8,
+                0
+            ],
+            [
+                1,
+                3
+            ],
+            [
+                4,
+                4
+            ],
+            [
+                7,
+                5
+            ],
+            [
+                12,
+                7
+            ],
+            [
+                13,
+                13
+            ],
+            [
+                18,
+                14
+            ],
+            [
+                20,
+                15
+            ],
+            [
+                14,
+                12
+            ],
+            [
+                19,
+                11
+            ],
+            [
+                21,
+                10
+            ],
+            [
+                15,
+                9
+            ]
+        ]
+    },
+    "DEBUG": 0
+}
