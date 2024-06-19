@@ -7,15 +7,17 @@ rotate = {
     'Human3.6M': [-0.001, -0.001, 0.001],
     'NTU': [1., 1., -1.],
     'HAA4D': [1., -1., -1.],
-    'OMMC': [-0.001, -0.001, 0.001]
+    'OMMC': [1, -1., -1.]
 }
 
-
 def transform(name, arr: np.ndarray):
-    for i in range(arr.shape[0]):
-        origin = arr[i][0].copy()
-        for j in range(arr.shape[1]):
-            arr[i][j] -= origin
-            for k in range(3):
-                arr[i][j][k] *= rotate[name][k]
-    return arr
+	anchor = 0
+	if name == 'OMMC':
+		anchor = 6
+	for i in range(arr.shape[0]):
+		origin = arr[i][anchor].copy()
+		for j in range(arr.shape[1]):
+			arr[i][j] -= origin
+			for k in range(3):
+				arr[i][j][k] *= rotate[name][k]
+	return arr
