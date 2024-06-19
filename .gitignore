@@ -12,6 +12,8 @@ image.png
 smplpytorch/native/models/*.pkl
 
 exp/
+gif/
+report/
 output/
 make_gif.py
 dataset/
